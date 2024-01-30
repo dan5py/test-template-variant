@@ -1,0 +1,70 @@
+{
+  "version": "1",
+  "footer": "\n\tcd {{@name}}\n\t{{@packageManager}} run dev",
+  "prompts": [
+    {
+      "name": "typescript",
+      "type": "toggle",
+      "message": "Do you want to use TypeScript?",
+      "initial": false
+    },
+    {
+      "name": "eslint",
+      "type": "toggle",
+      "message": "Do you want to use ESLint?",
+      "initial": false
+    },
+    {
+      "name": "tailwind",
+      "type": "toggle",
+      "message": "Do you want to use Tailwind CSS?",
+      "initial": false
+    },
+    {
+      "name": "appRouter",
+      "type": "toggle",
+      "message": "Do you want to use the new App Router?",
+      "initial": true
+    }
+  ],
+  "variants": [
+    {
+      "folder": "app",
+      "when": ["appRouter", "!tailwind"]
+    },
+    {
+      "folder": "app-tw",
+      "when": ["appRouter", "tailwind"]
+    },
+    {
+      "folder": "default",
+      "when": ["!appRouter", "!tailwind"]
+    },
+    {
+      "folder": "default-tw",
+      "when": ["!appRouter", "tailwind"]
+    },
+    {
+      "folder": "ts",
+      "when": "typescript"
+    },
+    {
+      "folder": "js",
+      "when": "!typescript"
+    }
+  ],
+  "actions": [
+    {
+      "type": "exec",
+      "command": "rm .eslintrc.json",
+      "when": "!eslint",
+      "os": "!win32"
+    },
+    {
+      "type": "exec",
+      "command": "del .eslintrc.json",
+      "when": "!eslint",
+      "os": "win32"
+    }
+  ]
+}
