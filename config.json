@@ -65,6 +65,11 @@
       "command": "del .eslintrc.json",
       "when": "!eslint",
       "os": "win32"
+    },
+    {
+      "type": "remove-packages",
+      "packages": ["eslint", "eslint-config-next"],
+      "when": "!eslint"
     }
   ]
 }
